@@ -1,0 +1,125 @@
+CREATE DATABASE usp_sitebd;
+USE usp_sitebd;
+
+– registro que vamos trazer do front para armazenar os dados de email
+CREATE TABLE newsletter_emails (
+    id_email INT AUTO_INCREMENT PRIMARY KEY, -- identificador único
+    email VARCHAR(150) NOT NULL,             -- e-mail cadastrado
+    data_cadastro DATETIME DEFAULT CURRENT_TIMESTAMP, -- quando foi salvo
+    pagina_origem VARCHAR(150),              -- de qual página veio o cadastro
+    user_agent TEXT                          -- informações do navegador 
+);
+
+
+-- Guarda informações simples de visitas ao site
+CREATE TABLE site_metricas (
+    id_metrica INT AUTO_INCREMENT PRIMARY KEY, -- identificador único
+    pagina VARCHAR(150) NOT NULL,              -- qual página foi acessada
+    data_acesso DATETIME DEFAULT CURRENT_TIMESTAMP, -- quando acessou
+    dispositivo VARCHAR(50),                   -- celular / desktop
+    navegador VARCHAR(150),                    -- navegador usado
+    referrer VARCHAR(500),                     -- de onde o usuário veio
+    duracao_segundos INT                       -- tempo no site
+);
+
+-- Usuários que podem acessar o painel administrativo
+CREATE TABLE admin_usuarios (
+    id_usuario INT AUTO_INCREMENT PRIMARY KEY, -- identificador
+    nome VARCHAR(150) NOT NULL,                -- nome do usuário
+    email VARCHAR(150) NOT NULL UNIQUE,        -- login (e-mail)
+    senha_hash VARCHAR(255) NOT NULL,          -- senha protegida (hash)
+    cargo VARCHAR(50) DEFAULT 'editor',        -- função: admin / editor
+    ativo BOOLEAN DEFAULT TRUE,                -- se o usuário está ativo
+    criado_em DATETIME DEFAULT CURRENT_TIMESTAMP, -- criado quando
+    atualizado_em DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, -- atualizado quando
+    ultimo_login DATETIME                      -- data do último login
+);
+
+
+-- Guardará os posts e notícias do site
+CREATE TABLE posts (
+    id_post INT AUTO_INCREMENT PRIMARY KEY, -- identificador do post
+    titulo VARCHAR(255) NOT NULL,           -- título da notícia
+    resumo VARCHAR(512),                    -- resumo curto
+    conteudo LONGTEXT NOT NULL,             -- texto completo
+    autor_id INT,                           -- quem publicou
+    criado_em DATETIME DEFAULT CURRENT_TIMESTAMP,
+    atualizado_em DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    publicado BOOLEAN DEFAULT FALSE,        -- publicado ou rascunho
+    publicado_em DATETIME,                  -- quando foi publicado
+    imagem_capa VARCHAR(255),               -- imagem do post
+    slug VARCHAR(255) NOT NULL,             -- URL amigável do post
+    CONSTRAINT fk_post_autor FOREIGN KEY (autor_id)
+        REFERENCES admin_usuarios(id_usuario) -- liga post ao autor
+);
+
+-- Lista de categorias para organizar os posts
+CREATE TABLE posts_categorias (
+    id_categoria INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,             -- nome da categoria
+    descricao TEXT,                          -- descrição opcional
+    criado_em DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+
+-- Lista de tags (palavras chave)
+CREATE TABLE posts_tags (
+    id_tag INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(60) NOT NULL                -- nome da tag
+);
+
+
+-- Relaciona posts com tags (muitos-para-muitos)
+CREATE TABLE posts_tags_rel (
+    id_post INT NOT NULL,
+    id_tag INT NOT NULL,
+    PRIMARY KEY (id_post, id_tag),           -- combinação única
+    FOREIGN KEY (id_post) REFERENCES posts(id_post) ON DELETE CASCADE,
+-- Cria uma chave estrangeira usando o campo id_post desta tabela.
+-- Garante que o valor de id_post exista na tabela posts.
+-- ON DELETE CASCADE: se um post for apagado na tabela 'posts',
+-- todos os registros relacionados nesta tabela também serão apagados automaticamente,
+-- evitando registros órfãos.
+
+FOREIGN KEY (id_tag) REFERENCES posts_tags(id_tag) ON DELETE CASCADE
+-- Cria uma chave estrangeira usando o campo id_tag desta tabela.
+-- Garante que o valor de id_tag exista na tabela posts_tags.
+-- ON DELETE CASCADE: se uma tag for apagada da tabela 'posts_tags',
+-- todos os relacionamentos ligados a ela nesta tabela também serão removidos.
+
+);
+
+
+-- Relaciona posts com categorias (muitos-para-muitos)
+CREATE TABLE posts_categorias_rel (
+    id_post INT NOT NULL,
+    id_categoria INT NOT NULL,
+    PRIMARY KEY (id_post, id_categoria),
+    FOREIGN KEY (id_post) REFERENCES posts(id_post) ON DELETE CASCADE,
+    FOREIGN KEY (id_categoria) REFERENCES posts_categorias(id_categoria) ON DELETE CASCADE
+);
+
+
+-- Registra ações feitas no painel (auditoria simples)
+CREATE TABLE sistema_logs (
+    id_log INT AUTO_INCREMENT PRIMARY KEY,
+    usuario_id INT,                           -- quem fez a ação
+    acao VARCHAR(255) NOT NULL,               -- ação realizada
+    entidade VARCHAR(100),                    -- tabela afetada
+    entidade_id VARCHAR(100),                 -- id afetado
+    detalhes TEXT,                            -- informações extras
+    data_hora DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (usuario_id) REFERENCES admin_usuarios(id_usuario)
+);
+
+-- Configurações gerais do site
+CREATE TABLE sistema_config (
+    id_config INT AUTO_INCREMENT PRIMARY KEY,
+    chave VARCHAR(100) NOT NULL,              -- nome da configuração
+    valor TEXT NOT NULL,                      -- valor dela
+    criado_em DATETIME DEFAULT CURRENT_TIMESTAMP,
+    atualizado_em DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+
+

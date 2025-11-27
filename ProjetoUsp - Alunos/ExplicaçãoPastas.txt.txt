@@ -1,0 +1,35 @@
+config: só a conexão com o banco.
+
+models: cada arquivo representa uma tabela.
+
+controllers: recebem requisições, chamam os models e mandam dados para as views.
+
+views: páginas HTML/PHP do login e do dashboard.
+
+public: ponto de entrada do site (index.php).
+
+/backend
+│
+├─ /config
+│     database.php        ← conexão PDO
+│
+├─ /models               ← conversam com o banco
+│     NewsletterModel.php
+│     MetricasModel.php
+│     UsuarioModel.php
+│     PostsModel.php
+│
+├─ /controllers          ← lógica das páginas
+│     NewsletterController.php
+│     MetricasController.php
+│     UsuarioController.php
+│     PostsController.php
+│
+├─ /views                ← telas HTML/PHP
+│     /auth              ← login
+│         login.php
+│     /dashboard         ← painel admin
+│         dashboard.php
+│
+├─ /public               ← parte acessada pelo navegador
+
