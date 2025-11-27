@@ -14,27 +14,27 @@
 }
 
 .navbar-brand img {
-  max-height: 200px;
-  width: auto;
+    max-height: 200px;
+    width: auto;
 }
 
 /* barra do tradutor // gambiarra da v1 */
 #google_translate_element select {
-  border-radius: 6px;
-  padding: 6px;
-  border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 6px;
+    border: 1px solid #ccc;
 }
 
 .language-switcher img {
-  width: 28px;
-  height: auto;
-  cursor: pointer;
-  margin-right: 8px;
-  transition: transform 0.2s ease;
+    width: 28px;
+    height: auto;
+    cursor: pointer;
+    margin-right: 8px;
+    transition: transform 0.2s ease;
 }
 
 .language-switcher img:hover {
-  transform: scale(1.15);
+    transform: scale(1.15);
 }
 
 
@@ -57,7 +57,16 @@
 /* Botoes */
 .btn {
     font-weight: 500;
-    transition: .5s;
+    -moz-transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+}
+
+.btn:hover {
+    color: var(--primary);
+    -moz-transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+    transform: scale(1.2);
 }
 
 .btn.btn-primary,
@@ -131,7 +140,7 @@
 @media (max-width: 991.98px) {
     .navbar .navbar-nav {
         margin-top: 10px;
-    border-bottom: 1px solid rgba(10, 193, 180, 0.812);
+        border-bottom: 1px solid rgba(10, 193, 180, 0.812);
         background: var(--dark);
     }
 
@@ -170,7 +179,7 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-background: linear-gradient(135deg, rgba(16, 148, 171, 0.8), rgba(100, 196, 210, 0.6));
+    background: linear-gradient(135deg, rgba(16, 148, 171, 0.8), rgba(100, 196, 210, 0.6));
     z-index: 1;
 }
 
@@ -193,7 +202,7 @@ background: linear-gradient(135deg, rgba(16, 148, 171, 0.8), rgba(100, 196, 210,
         position: relative;
         min-height: 450px;
     }
-    
+
     #header-carousel .carousel-item img {
         position: absolute;
         width: 100%;
@@ -205,7 +214,7 @@ background: linear-gradient(135deg, rgba(16, 148, 171, 0.8), rgba(100, 196, 210,
 .page-header {
     padding-top: 12rem;
     padding-bottom: 6rem;
-background: linear-gradient(135deg, rgba(16, 148, 171, 0.8), rgba(100, 196, 210, 0.6));
+    background: linear-gradient(135deg, rgba(16, 148, 171, 0.8), rgba(100, 196, 210, 0.6));
     background-size: cover;
 }
 
@@ -252,7 +261,7 @@ background: linear-gradient(135deg, rgba(16, 148, 171, 0.8), rgba(100, 196, 210,
     display: flex;
     align-items: center;
     justify-content: center;
-background: linear-gradient(135deg, rgba(16, 148, 171, 0.8), rgba(100, 196, 210, 0.8));
+    background: linear-gradient(135deg, rgba(16, 148, 171, 0.8), rgba(100, 196, 210, 0.8));
     overflow: hidden;
     opacity: 0;
     transition: .5s;
@@ -268,7 +277,7 @@ background: linear-gradient(135deg, rgba(16, 148, 171, 0.8), rgba(100, 196, 210,
 }
 
 .donate {
-background: linear-gradient(135deg, rgba(16, 148, 171, 0.8), rgba(100, 196, 210, 0.6));
+    background: linear-gradient(135deg, rgba(16, 148, 171, 0.8), rgba(100, 196, 210, 0.6));
 }
 
 .btn-group .btn-light:hover,
@@ -346,6 +355,7 @@ background: linear-gradient(135deg, rgba(16, 148, 171, 0.8), rgba(100, 196, 210,
 }
 
 @media (min-width: 768px) {
+
     .testimonial-carousel::before,
     .testimonial-carousel::after {
         width: 200px;
@@ -353,6 +363,7 @@ background: linear-gradient(135deg, rgba(16, 148, 171, 0.8), rgba(100, 196, 210,
 }
 
 @media (min-width: 992px) {
+
     .testimonial-carousel::before,
     .testimonial-carousel::after {
         width: 300px;
@@ -377,7 +388,7 @@ background: linear-gradient(135deg, rgba(16, 148, 171, 0.8), rgba(100, 196, 210,
 
 .testimonial-carousel .owl-item.center .testimonial-item img {
     background: var(--primary) !important;
-} 
+}
 
 .testimonial-carousel .owl-nav {
     position: absolute;
@@ -418,7 +429,7 @@ background: linear-gradient(135deg, rgba(16, 148, 171, 0.8), rgba(100, 196, 210,
     margin-bottom: 5px;
     padding: 0;
     text-align: left;
-    color: rgba(255,255,255,0.5);
+    color: rgba(255, 255, 255, 0.5);
     font-weight: normal;
     text-transform: capitalize;
     transition: .3s;
@@ -429,7 +440,7 @@ background: linear-gradient(135deg, rgba(16, 148, 171, 0.8), rgba(100, 196, 210,
     content: "\f105";
     font-family: "Font Awesome 5 Free";
     font-weight: 900;
-    color: rgba(255,255,255,0.5);
+    color: rgba(255, 255, 255, 0.5);
     margin-right: 10px;
 }
 
@@ -440,8 +451,8 @@ background: linear-gradient(135deg, rgba(16, 148, 171, 0.8), rgba(100, 196, 210,
 }
 
 .footer .btn.btn-square {
-    color: rgba(255,255,255,0.5);
-    border: 1px solid rgba(255,255,255,0.5);
+    color: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
 .footer .btn.btn-square:hover {
