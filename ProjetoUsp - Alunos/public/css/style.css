@@ -448,3 +448,7 @@ background: linear-gradient(135deg, rgba(16, 148, 171, 0.8), rgba(100, 196, 210,
     color: var(--secondary);
     border-color: var(--light);
 }
+
+.container-xxl p {
+    text-align: justify !important;
+}
