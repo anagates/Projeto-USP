@@ -1,5 +1,5 @@
 :root {
-    --primary: #fcb421;
+    --primary: rgb(252, 194, 106);
     --secondary: #FFf;
     --light: #F8F8F9;
     --dark: #001D23;
@@ -183,6 +183,11 @@
     z-index: 1;
 }
 
+.img-fluid{
+    max-height: 300px;
+    overflow: hidden;
+}
+
 .carousel-control-prev,
 .carousel-control-next {
     width: 15%;
@@ -330,6 +335,9 @@
     background: var(--primary);
 }
 
+.container img{
+    border-radius: 15px;
+}
 
 /* Testemunhos */
 .testimonial-carousel::before {

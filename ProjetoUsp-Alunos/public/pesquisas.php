@@ -1,9 +1,25 @@
+<?php
+
+//Caminho ajustado para acessar o backend a partir das páginas do 
+require_once __DIR__ . './config/database.php';
+require_once __DIR__ . './controllers/DashboardController.php';
+
+$database = new Database();
+$db = $database->getConnection();
+
+$metricas = new MetricasController($db);
+$paginaAtual = basename($_SERVER['PHP_SELF']);
+
+$metricas->registrarAcesso($paginaAtual); 
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
     <meta charset="utf-8">
-    <title>Sobre o Ecoar - USP</title>
+    <title>Pesquisas do Ecoar - USP</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <meta name="keywords" content="Ecoar USP, pesquisa qualitativa crítica, pesquisas radicalmente qualitativas, pesquisa baseada em artes, epistemologias artísticas, metodologias participativas, metodologias artísticas, pesquisa acadêmica crítica, ProMuSPP, EACH USP, Marilia Velardi, artes e ciências, pesquisa coletiva, epistemologias não hegemônicas">
 <meta name="description" content="O Ecoar é um grupo de pesquisa da USP dedicado às pesquisas qualitativas críticas e às investigações baseadas em artes. Trabalha com epistemologias artísticas, metodologias participativas e perspectivas que questionam saberes hegemônicos, integrando arte, corpo e pesquisa para produzir conhecimento situado e transformador.">
@@ -57,11 +73,11 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <div class="navbar-nav ms-auto p-4 p-lg-0">
 
-            <a href="index.html" class="nav-item nav-link ">Início</a>
-            <a href="sobrenos.html" class="nav-item nav-link active">Sobre Nós</a>
+            <a href="index.html" class="nav-item nav-link">Início</a>
+            <a href="sobrenos.html" class="nav-item nav-link">Sobre Nós</a>
             <a href="integrantes.html" class="nav-item nav-link">Integrantes</a>
 
-            <details class="nav-item nav-link">
+            <details class="nav-item nav-link active">
                 <summary>Produção</summary>
                 <ul>
                     <li><a href="pesquisas.html">Pesquisas</a></li>
@@ -93,12 +109,13 @@
 
 
 
-    <!-- exemplo Header opcional -->
+      <!-- exemplo Header opcional -->
     <div class="container-fluid page-header mb-5 wow fadeIn" data-wow-delay="0.1s">
         <div class="container text-center">
-            <h1 class="display-4 text-white animated slideInDown mb-4">Sobre Nós</h1>
+            <h1 class="display-4 text-white animated slideInDown mb-4">Pesquisas Ecoar</h1>
         </div>
     </div>
+
 
     <!-- aqui vcs vao colocar o conteudo q o pessoal da usp passou -->
 
@@ -107,26 +124,58 @@
 <!-- lembtando q tem q ser fotos e textos-->
 
 <!-- apaguem dps e so demonstrativo -->
- <h1> Lorem Ipsum</h1>
+ <h1> Pesquisas em andamento</h1>
+ <br><br>
+
+ <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean blandit massa eu nisl ultricies, rhoncus tristique mi efficitur. Proin aliquam fermentum enim. Vivamus tempus felis augue, quis iaculis neque cursus id. Nam non elementum odio. In hac habitasse platea dictumst. Integer sed tincidunt libero, ac tincidunt arcu. Morbi vel massa orci. </p>
+
+ <br><br><br>
+<!-- vcs podem usar esse exemplo de card do bootstrap se quiserem e so ajustar -->
+
+<!-- comeco do card -->
+<div class="card" style="width: 18rem;">
+ <img src="./img/Exemplo1.jpg" class="card-img-top" alt="...">  <!-- vcs podem pegar a imagem de bancos de imagem caso queiram  -->
+  <div class="card-body">
+    <h5 class="card-title">Ana Maria Rodriguez Costas - Pós-doutorado</h5>
+    <p class="card-text">Dança, escola pública e poética do comum: entre experiências formadoras e práticas artístico-pedagógicas compartilhadas.</p>
+  </div>
+  <div class="card-body">
+    <a href="#" class="card-link">Pesquisa em Andamento</a>
+  </div>
+</div>
+<!-- fim do card -->
+
+<br><br><br>
+ <h1> Pesquisas Concluídas</h1>
+ <br><br>
+
+ <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean blandit massa eu nisl ultricies, rhoncus tristique mi efficitur. Proin aliquam fermentum enim. Vivamus tempus felis augue, quis iaculis neque cursus id. Nam non elementum odio. In hac habitasse platea dictumst. Integer sed tincidunt libero, ac tincidunt arcu. Morbi vel massa orci. </p>
+
  <br><br><br>
 
- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean blandit massa eu nisl ultricies, rhoncus tristique mi efficitur. Proin aliquam fermentum enim. Vivamus tempus felis augue, quis iaculis neque cursus id. Nam non elementum odio. In hac habitasse platea dictumst. Integer sed tincidunt libero, ac tincidunt arcu. Morbi vel massa orci.
+<!-- comeco do card -->
+<div class="card" style="width: 18rem;">
+ <img src="./img/Exemplo2.jpg" class="card-img-top" alt="...">  <!-- vcs podem pegar a imagem de bancos de imagem caso queiram  -->
+  <div class="card-body">
+    <h5 class="card-title">Teatro, afeto e adolescências periféricas: um rio grande demais pra se navegar com pressa.</h5>
+    <p class="card-text">ALMEIDA, Lígia Helena de. Teatro, afeto e adolescências periféricas: um rio grande demais pra se navegar com pressa. Dissertação (Mestrado em Ciências - Mudança Social e Participação Política). Escola de Artes, Ciências e Humanidades, Universidade de São Paulo, 2024.
+</p>
+  </div>
+  <div class="card-body">
+    <!-- aqui vcs coloca cada href com o link q o pessoal passou e TESTEM -->
+    <a href="https://www.teses.usp.br/teses/disponiveis/100/100134/tde-02012025-121636/pt-br.php" class="card-link">Saiba mais</a> 
 
-Nullam at aliquam turpis, ut pulvinar risus. Nullam pharetra odio nisi, sed consequat enim aliquet vitae. Sed vehicula nibh fermentum mi blandit cursus. Morbi ut odio varius, suscipit ligula vel, tincidunt magna. Donec facilisis viverra urna eget laoreet. Aliquam commodo sit amet odio cursus ullamcorper. Mauris eu justo et orci tincidunt congue. Sed sed sem in urna facilisis rutrum in ut dui. Suspendisse bibendum ex in ultricies efficitur. Praesent lacinia et nisi ac cursus. Integer quis facilisis justo. Vestibulum convallis dolor mi, in tristique nisi bibendum a. Ut nec nibh nisl. Quisque vel odio est. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; In hac habitasse platea dictumst.
+  </div>
+</div>
+<!-- fim do card -->
 
-Fusce vitae molestie erat. Donec sodales lobortis posuere. Ut pellentesque ligula at nunc vestibulum convallis. Vestibulum tincidunt interdum lorem, at posuere orci gravida eget. Suspendisse volutpat diam justo, non pharetra ipsum tincidunt vel. Donec sodales diam vitae sem blandit rutrum. Curabitur eu tortor leo. Cras sit amet vulputate libero. Donec ornare justo eget fringilla porttitor. Curabitur sed bibendum est. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Fusce quis orci non nulla convallis congue id fringilla ipsum. Phasellus massa neque, congue nec hendrerit nec, sollicitudin vel augue. Pellentesque finibus pretium elit eget eleifend.
-
-Maecenas ornare commodo est, sit amet congue nunc gravida vitae. Pellentesque mollis eros urna, quis condimentum elit sollicitudin ac. Nullam sed faucibus metus. Mauris in rutrum eros. Maecenas viverra tortor non nulla iaculis convallis. Etiam vestibulum pellentesque odio, vel dapibus neque vulputate in. Praesent convallis mi sed eros auctor, ac tempus elit consequat. Integer viverra, ex et consectetur elementum, urna eros tincidunt magna, at luctus urna mauris cursus augue. Duis molestie leo non auctor vehicula.
-
-Suspendisse sed massa ut diam placerat commodo. Etiam placerat diam non dui malesuada accumsan. Maecenas aliquam mauris enim. Maecenas imperdiet lacinia dui, quis fermentum quam imperdiet aliquet. Aenean lectus velit, sollicitudin a justo vitae, accumsan fermentum quam. Suspendisse potenti. Aenean turpis erat, efficitur id pharetra non, interdum et sem. Phasellus ut turpis ut metus suscipit pretium. Nunc lobortis est sed nibh tristique pulvinar. Nunc nec sollicitudin leo, non gravida lacus.</p>
 
  <!--  -->
         </div>
     </div>
 
-
     <!-- Comeco do Footer -->
-
+ 
     <!-- vlibras -->
      <div vw class="enabled">
     <div vw-access-button class="active"></div>
@@ -138,8 +187,8 @@ Suspendisse sed massa ut diam placerat commodo. Etiam placerat diam non dui male
   <script>
     new window.VLibras.Widget('https://vlibras.gov.br/app');
   </script>
-
-
+ 
+ 
     <!-- conteudo -->
     <div class="container-fluid bg-dark text-white-50 footer mt-5 pt-5 wow fadeIn" data-wow-delay="0.1s">
         <div class="container py-5">
@@ -150,15 +199,15 @@ Suspendisse sed massa ut diam placerat commodo. Etiam placerat diam non dui male
 </div>
                     <p><br>Grupo ECOAR – Estudos em Corpo e Arte <br><br>
 <a href="https://www5.each.usp.br">EACH – Escola de Artes, Ciências e Humanidades da Universidade de São Paulo.</a></p>
-
+ 
 <!-- redes sociais do projeto -->
                     <div class="d-flex pt-2">
                         <a class="btn btn-square me-1" href="https://www.facebook.com/pesquisaqualiemcena"><i class="fab fa-facebook-f"></i></a>
                         <a class="btn btn-square me-1" href="https://www.youtube.com/@ecoarusp5628"><i class="fab fa-youtube"></i></a>
                         <a class="btn btn-square me-0" href="https://www.instagram.com/ecoar.usp/"><i class="fab fa-instagram"></i></a>
                     </div>
-
-
+ 
+ 
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h5 class="text-light mb-4">Endereço</h5>
@@ -191,53 +240,58 @@ Suspendisse sed massa ut diam placerat commodo. Etiam placerat diam non dui male
                     <a class="btn btn-link" href="politicaprivacidade.html">Política de Privacidade</a>
                 </div>
                 <div class="col-lg-3 col-md-6">
-                    <h5 class="text-light mb-4">Newsletter</h5>
-                    <p>Inscreva-se em nossa Newsletter e acompanhe nossos projetos.</p>
-                    <div class="position-relative mx-auto" style="max-width: 400px;">
-                        <input class="form-control bg-transparent w-100 py-3 ps-4 pe-5" type="email"
-                            placeholder="Email">
-                        <button type="button"
-                            class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">Inscrever</button>
-                    </div>
-                </div>
+<h5 class="text-light mb-4">Newsletter</h5>
+<p>Inscreva-se em nossa Newsletter e acompanhe nossos projetos.</p>
+ 
+    <form id="newsletterForm" class="position-relative mx-auto" style="max-width: 400px;">
+<input id="emailInput" class="form-control bg-transparent w-100 py-3 ps-4 pe-5"
+               type="email" placeholder="Email" required>
+<button type="submit"
+            class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">
+            Inscrever
+</button>
+</form>
+ 
+    <small id="msgRetorno" class="text-white mt-2 d-block"></small>
+</div>
             </div>
         </div>
-
+ 
     </div>
         <!-- parte de baixo do footer com as imagens da usp -->
-
+ 
         <div class="container text-center">
   <div class="row justify-content-center align-items-center g-3">
-
+ 
     <div class="col-md-2">
       <img src="./img/LogoUSP.jpg" class="img-thumbnail" alt="Logo da USP">
     </div>
-
+ 
     <div class="col-md-2">
       <img src="./img/LogoEACH.png" class="img-thumbnail" alt="Logo da EACH">
     </div>
-
+ 
     <div class="col-md-2">
       <img src="./img/LogoProMuSPP.png" class="img-thumbnail" alt="Logo da ProMuSPP">
     </div>
-
+ 
     <div class="col-md-2">
       <img src="./img/LogoCNPq.jpg" class="img-thumbnail" alt="Logo do CNPq">
     </div>
-
+ 
     <div class="col-md-1">
       <img src="./img/LogoCAPESP.png" class="img-thumbnail" alt="Logo da CAPES">
     </div>
-
+ 
     <div class="col-md-2">
       <img src="./img/LogoFAPESP.png" class="img-thumbnail" alt="Logo da FAPESP">
     </div>
-
+ 
   </div>
 </div>
-
+ 
     <!-- Final do footer -->
-
+ 
     <!-- Bibliotecas JavaScript -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -247,9 +301,7 @@ Suspendisse sed massa ut diam placerat commodo. Etiam placerat diam non dui male
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
     <script src="lib/parallax/parallax.min.js"></script>
     <script src="js/main.js"></script>
-
-
-
+ 
     <!-- google tradutor -->
      <script type="text/javascript">
 function googleTranslateElementInit() {
@@ -258,12 +310,37 @@ function googleTranslateElementInit() {
       pageLanguage: 'pt-br',      
       includedLanguages: 'en,pt,es,fr,de',  // idiomas que você quer permitir
       autoDisplay: true
-    }, 
+    },
     'google_translate_element'
   );
 }
 </script>
-
+ 
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+ 
+ <!-- JS do form da newsletter -->
+<script>
+document.getElementById("newsletterForm")?.addEventListener("submit", async function(e) {
+    e.preventDefault();
+ 
+    const email = document.getElementById("emailInput").value;
+ 
+    // dados para o backend
+    const formData = new FormData();
+    formData.append("email", email);
+    formData.append("pagina", window.location.pathname);
+ 
+    const resp = await fetch("/backend/public/salvar_email.php", {
+        method: "POST",
+        body: formData
+    });
+ 
+    const texto = await resp.text();
+    document.getElementById("msgRetorno").textContent = texto;
+});
+</script>
+ 
+ 
 </body>
-
+ 
 </html>
